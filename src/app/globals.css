@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --color-mountain-950: #0a1628;
+  --color-mountain-900: #0f2744;
+  --color-mountain-800: #153a5c;
+  --color-frost: rgba(255, 255, 255, 0.08);
+  --color-frost-strong: rgba(255, 255, 255, 0.14);
+}
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-zinc-50 text-zinc-900;
+  }
+  ::selection {
+    @apply bg-sky-200/80 text-mountain-950;
+  }
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  50% {
+    transform: translateY(-12px) translateX(4px);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(-5%) translateY(0);
+  }
+  100% {
+    transform: translateX(5%) translateY(-3%);
+  }
+}
+
+@keyframes noise-shift {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-10%, -10%);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.animate-float-soft {
+  animation: float-soft 7s ease-in-out infinite;
+}
+
+.animate-drift-slow {
+  animation: drift 28s ease-in-out infinite alternate;
+}
+
+.animate-drift-slower {
+  animation: drift 42s ease-in-out infinite alternate-reverse;
+}
+
+.noise-layer {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  animation: noise-shift 8s steps(4) infinite;
+}
+
+.glass-panel {
+  @apply rounded-3xl border border-white/20 bg-white/10 shadow-[0_8px_40px_rgba(15,39,68,0.15)] backdrop-blur-xl;
+}
+
+.glass-panel-dark {
+  @apply rounded-3xl border border-white/10 bg-white/5 shadow-[0_20px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl;
+}
+
+.perspective-dramatic {
+  perspective: 1400px;
+}
+
+.tilt-wrap {
+  transform-style: preserve-3d;
+}
